@@ -3633,7 +3633,7 @@
                 <!-- Comments will be generated dynamically -->
             </div>
             <div class="comment-form">
-                <textarea id="commentInput" class="comment-input" placeholder="Ajouter un commentaire..." rows="1"></textarea>
+                <textarea id="commentInput" class="comment-input" placeholder="Commentaire..." rows="1"></textarea>
                 <button id="commentSubmit" class="comment-submit">
                     <i class="fas fa-paper-plane"></i>
                 </button>
@@ -4145,13 +4145,15 @@
                 if (isMobile) {
                     // En mobile : coin supérieur droit, icône seule
                     connectionStatusElement.style.bottom = 'auto';
-                    connectionStatusElement.style.top = '15px';
+                    connectionStatusElement.style.top = '0px';
                     connectionStatusElement.style.left = 'auto';
                     connectionStatusElement.style.right = '15px';
                     connectionStatusElement.style.fontSize = '1rem';
                     connectionStatusElement.style.padding = '8px';
+                    connectionStatusElement.style.paddingRight = '19px';
                     connectionStatusElement.style.maxWidth = '40px';
-                    connectionStatusElement.style.borderRadius = '50%';
+                    connectionStatusElement.style.borderRadius = '0px';
+                    connectionStatusElement.style.borderBottomLeftRadius = '15px';
                     connectionStatusElement.style.width = '40px';
                     connectionStatusElement.style.height = '40px';
                     connectionStatusElement.style.display = 'flex';
