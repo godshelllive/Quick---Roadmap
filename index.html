@@ -109,11 +109,72 @@
             --text-secondary: #8b5a7b;
             --border-color: #f3c6d6;
             --accent-color: #ec4899;
+            --accent-color-dark: #be185d;
             --success-color: #10b981;
             --warning-color: #f59e0b;
             --danger-color: #ef4444;
             --shadow: 0 2px 4px rgba(236, 72, 153, 0.1);
             --shadow-hover: 0 4px 8px rgba(236, 72, 153, 0.15);
+        }
+        
+        .inverse-mode {
+            --primary-bg: #212529;
+            --secondary-bg: #343a40;
+            --text-primary: #f8f9fa;
+            --text-secondary: #e9ecef;
+            --border-color: #495057;
+            --accent-color: #fd7e14;
+            --accent-color-dark: #e67e22;
+            --success-color: #20c997;
+            --warning-color: #ffc107;
+            --danger-color: #dc3545;
+            --shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            --shadow-hover: 0 4px 8px rgba(0, 0, 0, 0.4);
+        }
+        
+        .focus-mode {
+            --primary-bg: #1e1e2e;
+            --secondary-bg: #282a36;
+            --text-primary: #f8f8f2;
+            --text-secondary: #bfbfbf;
+            --border-color: #44475a;
+            --accent-color: #6272a4;
+            --accent-color-dark: #4d5b8c;
+            --success-color: #50fa7b;
+            --warning-color: #f1fa8c;
+            --danger-color: #ff5555;
+            --shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            --shadow-hover: 0 4px 8px rgba(0, 0, 0, 0.4);
+        }
+        
+        .leger-mode {
+            --primary-bg: #f5f5f5;
+            --secondary-bg: #e8e8e8;
+            --text-primary: #333333;
+            --text-secondary: #666666;
+            --border-color: #dddddd;
+            --accent-color: #4caf50;
+            --accent-color-dark: #388e3c;
+            --success-color: #81c784;
+            --warning-color: #ffb74d;
+            --danger-color: #e57373;
+            --shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --shadow-hover: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .venom-mode {
+            --primary-bg: #0a0e14;
+            --secondary-bg: #1a1e24;
+            --text-primary: #c3e88d;
+            --text-secondary: #89ddff;
+            --border-color: #2d3640;
+            --accent-color: #c792ea;
+            --accent-color-dark: #a170c9;
+            --success-color: #c3e88d;
+            --warning-color: #ffcb6b;
+            --danger-color: #f07178;
+            --shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+            --shadow-hover: 0 4px 8px rgba(0, 0, 0, 0.6);
         }
 
         body.pink-sakura-mode {
@@ -124,6 +185,169 @@
                 #fef3f3 75%,
                 #fef7f7 100%
             );
+        }
+        
+        body.inverse-mode {
+            background: linear-gradient(135deg, 
+                #212529 0%, 
+                #343a40 25%,
+                #495057 50%,
+                #343a40 75%,
+                #212529 100%
+            );
+        }
+        
+        body.focus-mode {
+            background: linear-gradient(135deg, 
+                #1e1e2e 0%, 
+                #282a36 25%,
+                #2d2d40 50%,
+                #282a36 75%,
+                #1e1e2e 100%
+            );
+        }
+        
+        body.leger-mode {
+            background: linear-gradient(135deg, 
+                #f5f5f5 0%, 
+                #e8e8e8 25%,
+                #f0f0f0 50%,
+                #e8e8e8 75%,
+                #f5f5f5 100%
+            );
+        }
+        
+        body.venom-mode {
+            background: linear-gradient(135deg, 
+                #0a0e14 0%, 
+                #1a1e24 25%,
+                #151b22 50%,
+                #1a1e24 75%,
+                #0a0e14 100%
+            );
+        }
+        
+        body.inverse-mode header {
+            background: linear-gradient(135deg, #fd7e14 0%, #e67e22 100%);
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        body.inverse-mode header h1 {
+            color: #212529;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        
+        body.inverse-mode .action-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+            border-color: var(--border-color);
+        }
+        
+        body.inverse-mode .action-btn:hover {
+            background: var(--accent-color);
+            color: #212529;
+        }
+        
+        body.inverse-mode .comment-item {
+            background: #343a40;
+            border-left-color: var(--accent-color);
+        }
+        
+        body.inverse-mode .comment-author {
+            color: var(--accent-color);
+        }
+        
+        /* Styles spécifiques pour le thème Focus */
+        body.focus-mode header {
+            background: linear-gradient(135deg, #6272a4 0%, #4d5b8c 100%);
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        body.focus-mode header h1 {
+            color: #f8f8f2;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+        
+        body.focus-mode .action-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+            border-color: var(--border-color);
+        }
+        
+        body.focus-mode .action-btn:hover {
+            background: var(--accent-color);
+            color: #f8f8f2;
+        }
+        
+        body.focus-mode .comment-item {
+            background: #282a36;
+            border-left-color: var(--accent-color);
+        }
+        
+        body.focus-mode .comment-author {
+            color: var(--accent-color);
+        }
+        
+        /* Styles spécifiques pour le thème Léger */
+        body.leger-mode header {
+            background: linear-gradient(135deg, #4caf50 0%, #388e3c 100%);
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        body.leger-mode header h1 {
+            color: #ffffff;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        
+        body.leger-mode .action-btn {
+            background: rgba(0, 0, 0, 0.05);
+            color: var(--text-primary);
+            border-color: var(--border-color);
+        }
+        
+        body.leger-mode .action-btn:hover {
+            background: var(--accent-color);
+            color: #ffffff;
+        }
+        
+        body.leger-mode .comment-item {
+            background: #f0f0f0;
+            border-left-color: var(--accent-color);
+        }
+        
+        body.leger-mode .comment-author {
+            color: var(--accent-color);
+        }
+        
+        /* Styles spécifiques pour le thème Venom */
+        body.venom-mode header {
+            background: linear-gradient(135deg, #c792ea 0%, #a170c9 100%);
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        body.venom-mode header h1 {
+            color: #0a0e14;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+        
+        body.venom-mode .action-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+            border-color: var(--border-color);
+        }
+        
+        body.venom-mode .action-btn:hover {
+            background: var(--accent-color);
+            color: #0a0e14;
+        }
+        
+        body.venom-mode .comment-item {
+            background: #1a1e24;
+            border-left-color: var(--accent-color);
+        }
+        
+        body.venom-mode .comment-author {
+            color: var(--accent-color);
         }
 
         /* Animation d'arrière-plan supprimée - remplacée par gradient */
@@ -703,6 +927,58 @@
 
         .sakura-preview .preview-text {
             background: #fdf2f8;
+        }
+        
+        .inverse-preview {
+            background: #212529;
+            border: 1px solid #495057;
+        }
+        
+        .inverse-preview .preview-header {
+            background: linear-gradient(135deg, #fd7e14 0%, #e67e22 100%);
+        }
+        
+        .inverse-preview .preview-text {
+            background: #343a40;
+        }
+        
+        .focus-preview {
+            background: #1e1e2e;
+            border: 1px solid #44475a;
+        }
+        
+        .focus-preview .preview-header {
+            background: linear-gradient(135deg, #6272a4 0%, #4d5b8c 100%);
+        }
+        
+        .focus-preview .preview-text {
+            background: #282a36;
+        }
+        
+        .leger-preview {
+            background: #f5f5f5;
+            border: 1px solid #dddddd;
+        }
+        
+        .leger-preview .preview-header {
+            background: linear-gradient(135deg, #4caf50 0%, #388e3c 100%);
+        }
+        
+        .leger-preview .preview-text {
+            background: #e8e8e8;
+        }
+        
+        .venom-preview {
+            background: #0a0e14;
+            border: 1px solid #2d3640;
+        }
+        
+        .venom-preview .preview-header {
+            background: linear-gradient(135deg, #c792ea 0%, #a170c9 100%);
+        }
+        
+        .venom-preview .preview-text {
+            background: #1a1e24;
         }
 
         .theme-info {
@@ -3543,6 +3819,10 @@
                         <button class="theme-btn-mobile" data-theme="light"><i class="fas fa-sun"></i> Clair</button>
                         <button class="theme-btn-mobile" data-theme="dark"><i class="fas fa-moon"></i> Sombre</button>
                         <button class="theme-btn-mobile" data-theme="pink-sakura"><i class="fas fa-seedling"></i> Sakura</button>
+                        <button class="theme-btn-mobile" data-theme="inverse"><i class="fas fa-exchange-alt"></i> Inversé</button>
+                        <button class="theme-btn-mobile" data-theme="focus"><i class="fas fa-bullseye"></i> Focus</button>
+                        <button class="theme-btn-mobile" data-theme="leger"><i class="fas fa-feather"></i> Léger</button>
+                        <button class="theme-btn-mobile" data-theme="venom"><i class="fas fa-spider"></i> Venom</button>
                     </div>
                 </div>
             </div>
@@ -4119,6 +4399,62 @@
                     <div class="theme-info">
                         <i class="fas fa-seedling"></i>
                         <span>Thème Sakura</span>
+                    </div>
+                </div>
+                
+                <div class="theme-card" data-theme="inverse">
+                    <div class="theme-preview inverse-preview">
+                        <div class="preview-header"></div>
+                        <div class="preview-content">
+                            <div class="preview-text"></div>
+                            <div class="preview-text short"></div>
+                        </div>
+                    </div>
+                    <div class="theme-info">
+                        <i class="fas fa-exchange-alt"></i>
+                        <span>Thème Inversé</span>
+                    </div>
+                </div>
+                
+                <div class="theme-card" data-theme="focus">
+                    <div class="theme-preview focus-preview">
+                        <div class="preview-header"></div>
+                        <div class="preview-content">
+                            <div class="preview-text"></div>
+                            <div class="preview-text short"></div>
+                        </div>
+                    </div>
+                    <div class="theme-info">
+                        <i class="fas fa-bullseye"></i>
+                        <span>Thème Focus</span>
+                    </div>
+                </div>
+                
+                <div class="theme-card" data-theme="leger">
+                    <div class="theme-preview leger-preview">
+                        <div class="preview-header"></div>
+                        <div class="preview-content">
+                            <div class="preview-text"></div>
+                            <div class="preview-text short"></div>
+                        </div>
+                    </div>
+                    <div class="theme-info">
+                        <i class="fas fa-feather"></i>
+                        <span>Thème Léger</span>
+                    </div>
+                </div>
+                
+                <div class="theme-card" data-theme="venom">
+                    <div class="theme-preview venom-preview">
+                        <div class="preview-header"></div>
+                        <div class="preview-content">
+                            <div class="preview-text"></div>
+                            <div class="preview-text short"></div>
+                        </div>
+                    </div>
+                    <div class="theme-info">
+                        <i class="fas fa-spider"></i>
+                        <span>Thème Venom</span>
                     </div>
                 </div>
             </div>
@@ -5381,6 +5717,102 @@
                     btn.classList.remove('active');
                 }
             });
+        }
+        
+        // Fonction pour ajouter un nouveau thème
+        function addNewTheme(themeName, themeIcon, themeLabel, cssVariables, backgroundGradient) {
+            // 1. Ajouter les variables CSS
+            let styleElement = document.getElementById('dynamic-theme-styles');
+            if (!styleElement) {
+                styleElement = document.createElement('style');
+                styleElement.id = 'dynamic-theme-styles';
+                document.head.appendChild(styleElement);
+            }
+            
+            // Ajouter les variables CSS
+            let cssRules = `.${themeName}-mode {
+${cssVariables}
+}
+
+`;
+            
+            // Ajouter le gradient de fond
+            cssRules += `body.${themeName}-mode {
+${backgroundGradient}
+}
+
+`;
+            
+            // Ajouter les styles de prévisualisation
+            cssRules += `.${themeName}-preview {
+    background: var(--primary-bg);
+    border: 1px solid var(--border-color);
+}
+
+.${themeName}-preview .preview-header {
+    background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-color-dark) 100%);
+}
+
+.${themeName}-preview .preview-text {
+    background: var(--secondary-bg);
+}
+`;
+            
+            // Ajouter les styles au document
+            styleElement.textContent += cssRules;
+            
+            // 2. Ajouter la carte de thème dans le sélecteur
+            const themesGrid = document.querySelector('.themes-grid');
+            if (themesGrid) {
+                const themeCard = document.createElement('div');
+                themeCard.className = 'theme-card';
+                themeCard.setAttribute('data-theme', themeName);
+                
+                themeCard.innerHTML = `
+                    <div class="theme-preview ${themeName}-preview">
+                        <div class="preview-header"></div>
+                        <div class="preview-content">
+                            <div class="preview-text"></div>
+                            <div class="preview-text short"></div>
+                        </div>
+                    </div>
+                    <div class="theme-info">
+                        <i class="fas fa-${themeIcon}"></i>
+                        <span>Thème ${themeLabel}</span>
+                    </div>
+                `;
+                
+                themesGrid.appendChild(themeCard);
+                
+                // Ajouter l'événement de clic
+                themeCard.addEventListener('click', function() {
+                    const theme = this.getAttribute('data-theme');
+                    localStorage.setItem('theme', theme);
+                    applyTheme(theme);
+                });
+            }
+            
+            // 3. Ajouter le bouton dans le menu mobile
+            const themeButtons = document.querySelector('.theme-buttons');
+            if (themeButtons) {
+                const mobileButton = document.createElement('button');
+                mobileButton.className = 'theme-btn-mobile';
+                mobileButton.setAttribute('data-theme', themeName);
+                mobileButton.innerHTML = `<i class="fas fa-${themeIcon}"></i> ${themeLabel}`;
+                
+                themeButtons.appendChild(mobileButton);
+                
+                // Ajouter l'événement de clic
+                mobileButton.addEventListener('click', function() {
+                    const theme = this.getAttribute('data-theme');
+                    localStorage.setItem('theme', theme);
+                    applyTheme(theme);
+                    closeHamburgerMenu();
+                });
+            }
+            
+            // 4. Mettre à jour les boutons de thème
+            updateMobileThemeButtons();
         }
 
         // Fonction pour synchroniser les noms de projets
