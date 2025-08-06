@@ -1629,6 +1629,330 @@
             color: white;
         }
 
+        /* Popup de changement de thème - Style adaptatif */
+        .theme-popup-overlay {
+            position: fixed;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            bottom: 0 !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(8px);
+            align-items: center !important;
+            justify-content: center !important;
+            z-index: 10000 !important;
+            animation: themePopupFadeIn 0.3s ease-out;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+        
+        .theme-popup-overlay[style*="block"] {
+            display: flex !important;
+        }
+
+        @keyframes themePopupFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .theme-popup-container {
+            position: relative !important;
+            max-width: 420px !important;
+            width: 90% !important;
+            max-height: 90vh !important;
+            animation: themePopupSlideUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.175);
+            margin: 0 !important;
+            transform: none !important;
+        }
+
+        @keyframes themePopupSlideUp {
+            from { 
+                transform: translateY(40px) scale(0.95);
+                opacity: 0;
+            }
+            to { 
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+        }
+
+        .theme-popup-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--primary-bg);
+            border-radius: 16px;
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .theme-popup-content {
+            position: relative;
+            padding: 24px;
+            text-align: center;
+            max-height: calc(90vh - 48px);
+            overflow-y: auto;
+        }
+
+        .theme-popup-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .theme-popup-icon {
+            width: 42px;
+            height: 42px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            animation: themeIconRotate 3s linear infinite;
+            box-shadow: 0 4px 20px rgba(var(--accent-rgb), 0.3);
+        }
+
+        @keyframes themeIconRotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .theme-popup-close {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--secondary-bg);
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--text-secondary);
+        }
+
+        .theme-popup-close:hover {
+            background: var(--accent-color);
+            transform: scale(1.05);
+            color: white;
+        }
+
+        .theme-popup-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 0 0 20px 0;
+        }
+
+        .theme-popup-warning {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background: var(--secondary-bg);
+            border: 1px solid var(--border-color);
+            border-left: 4px solid #f39c12;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 20px;
+        }
+
+        .warning-icon-container {
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .warning-icon {
+            font-size: 1.8rem;
+            color: #f39c12;
+            animation: warningPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes warningPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .warning-pulse {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(243, 156, 18, 0.2) 0%, transparent 70%);
+            animation: pulseShrink 2s ease-in-out infinite;
+        }
+
+        @keyframes pulseShrink {
+            0%, 100% { transform: translate(-50%, -50%) scale(0); opacity: 1; }
+            50% { transform: translate(-50%, -50%) scale(1); opacity: 0; }
+        }
+
+        .warning-text {
+            text-align: left;
+            flex: 1;
+        }
+
+        .warning-main {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 0 0 6px 0;
+        }
+
+        .warning-sub {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        .theme-popup-question {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin: 0 0 24px 0;
+            font-weight: 500;
+        }
+
+        .theme-popup-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .theme-btn {
+            position: relative;
+            padding: 12px 24px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            min-width: 110px;
+            justify-content: center;
+            background: var(--secondary-bg);
+            color: var(--text-primary);
+        }
+
+        .theme-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .theme-btn-cancel:hover {
+            border-color: #e74c3c;
+            background: #e74c3c;
+            color: white;
+        }
+
+        .theme-btn-confirm {
+            background: var(--accent-color);
+            color: white;
+            border-color: var(--accent-color);
+        }
+
+        .theme-btn-confirm:hover {
+            background: var(--accent-color);
+            opacity: 0.9;
+            box-shadow: 0 4px 12px rgba(var(--accent-rgb), 0.3);
+        }
+
+        .btn-icon {
+            font-size: 1rem;
+        }
+
+        .btn-text {
+            font-size: 0.9rem;
+        }
+
+        .btn-ripple {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.4s, height 0.4s;
+        }
+
+        .theme-btn:active .btn-ripple {
+            width: 200px;
+            height: 200px;
+        }
+
+        /* Responsive pour mobile */
+        @media (max-width: 768px) {
+            .theme-popup-container {
+                width: 95%;
+                max-width: none;
+                max-height: 95vh;
+            }
+            
+            .theme-popup-content {
+                padding: 20px 16px;
+                max-height: calc(95vh - 40px);
+            }
+            
+            .theme-popup-warning {
+                flex-direction: column;
+                text-align: center;
+                gap: 12px;
+            }
+            
+            .warning-text {
+                text-align: center;
+            }
+            
+            .theme-popup-actions {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .theme-btn {
+                min-width: 100%;
+            }
+        }
+
+        /* Pour les très petits écrans */
+        @media (max-width: 480px) {
+            .theme-popup-container {
+                width: 98%;
+                max-height: 98vh;
+            }
+            
+            .theme-popup-content {
+                padding: 16px 12px;
+                max-height: calc(98vh - 32px);
+            }
+            
+            .theme-popup-title {
+                font-size: 1.2rem;
+            }
+            
+            .warning-main {
+                font-size: 0.9rem;
+            }
+            
+            .warning-sub {
+                font-size: 0.8rem;
+            }
+        }
+
         .tasks-container {
             display: grid;
             gap: 20px;
@@ -4224,6 +4548,53 @@
             </div>
             </div>
 
+    <!-- Theme Change Confirmation Popup - Style Innovant -->
+    <div id="themeChangePopup" class="theme-popup-overlay" style="display: none;">
+        <div class="theme-popup-container">
+            <div class="theme-popup-background"></div>
+            <div class="theme-popup-content">
+                <div class="theme-popup-header">
+                    <div class="theme-popup-icon">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <span class="theme-popup-close" id="closeThemePopup">
+                        <i class="fas fa-times"></i>
+                    </span>
+                </div>
+                
+                <div class="theme-popup-body">                    
+                    <div class="theme-popup-warning">
+                        <div class="warning-icon-container">
+                            <i class="fas fa-exclamation-triangle warning-icon"></i>
+                            <div class="warning-pulse"></div>
+                        </div>
+                        <div class="warning-text">
+                            <p class="warning-main">Attention, Êtes-vous sûr ?</p>
+                            <p class="warning-sub">Tout travail non enregistré sera perdu, car la page est sur le point d’être actualisée.</p>
+                        </div>
+                    </div>
+                    
+                    <p class="theme-popup-question">
+                        Êtes-vous sûr de vouloir continuer ?
+                    </p>
+                </div>
+                
+                <div class="theme-popup-actions">
+                    <button id="cancelThemeChange" class="theme-btn theme-btn-cancel">
+                        <span class="btn-icon">✕</span>
+                        <span class="btn-text">Annuler</span>
+                        <div class="btn-ripple"></div>
+                    </button>
+                    <button id="confirmThemeChange" class="theme-btn theme-btn-confirm">
+                        <span class="btn-icon">✓</span>
+                        <span class="btn-text">Continuer</span>
+                        <div class="btn-ripple"></div>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Settings Modal -->
     <div id="settingsModal" class="custom-modal" style="display: none;">
     <div class="custom-modal-content">
@@ -5416,8 +5787,8 @@
             document.querySelectorAll('.theme-card').forEach(card => {
                 card.addEventListener('click', (e) => {
                     const theme = e.currentTarget.getAttribute('data-theme');
-                    handleThemeChange(theme);
                     themeModal.style.display = 'none';
+                    showThemeChangePopup(theme);
                 });
             });
             
@@ -5487,10 +5858,8 @@
             document.querySelectorAll('.theme-btn-mobile').forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     const theme = e.target.getAttribute('data-theme');
-                    applyTheme(theme);
-                    localStorage.setItem('theme', theme);
-                    updateMobileThemeButtons();
                     closeHamburgerMenu();
+                    showThemeChangePopup(theme);
                 });
             });
             
@@ -5936,11 +6305,7 @@
             });
         }
 
-        function handleThemeChange(theme) {
-            applyTheme(theme);
-            localStorage.setItem('theme', theme);
-            updateThemeModal();
-        }
+
 
         function updateThemeModal() {
             const currentTheme = localStorage.getItem('theme') || 'light';
@@ -6082,7 +6447,7 @@ ${backgroundGradient}
                 // Ajouter l'événement de clic
                 themeCard.addEventListener('click', function() {
                     const theme = this.getAttribute('data-theme');
-                    showThemeConfirmModal(theme);
+                    showThemeChangePopup(theme);
                 });
             }
             
@@ -6099,9 +6464,8 @@ ${backgroundGradient}
                 // Ajouter l'événement de clic
                 mobileButton.addEventListener('click', function() {
                     const theme = this.getAttribute('data-theme');
-                    localStorage.setItem('theme', theme);
-                    applyTheme(theme);
                     closeHamburgerMenu();
+                    showThemeChangePopup(theme);
                 });
             }
             
@@ -6917,20 +7281,46 @@ ${backgroundGradient}
             }, 3000);
         }
 
-        function showThemeConfirmModal(theme) {
-            const confirmed = confirm(
-                "Le changement de thème va recharger la page.\n\n" +
-                "Tout travail non sauvegardé sera perdu.\n" +
-                "Êtes-vous sûr de vouloir continuer ?"
-            );
+        function showThemeChangePopup(theme) {
+            const popup = document.getElementById('themeChangePopup');
+            popup.style.display = 'block';
             
-            if (confirmed) {
+            // Gérer les événements
+            const confirmBtn = document.getElementById('confirmThemeChange');
+            const cancelBtn = document.getElementById('cancelThemeChange');
+            const closeBtn = document.getElementById('closeThemePopup');
+            
+            // Supprimer les anciens listeners pour éviter les doublons
+            confirmBtn.replaceWith(confirmBtn.cloneNode(true));
+            cancelBtn.replaceWith(cancelBtn.cloneNode(true));
+            closeBtn.replaceWith(closeBtn.cloneNode(true));
+            
+            // Ajouter les nouveaux listeners
+            document.getElementById('confirmThemeChange').addEventListener('click', () => {
+                // Sauvegarder le thème AVANT de recharger
                 localStorage.setItem('theme', theme);
-                location.reload();
-            }
+                
+                // S'assurer que la sauvegarde est faite avec un petit délai
+                setTimeout(() => {
+                    popup.style.display = 'none';
+                    location.reload();
+                }, 50);
+            });
+            
+            const closePopup = () => {
+                popup.style.display = 'none';
+            };
+            
+            document.getElementById('cancelThemeChange').addEventListener('click', closePopup);
+            document.getElementById('closeThemePopup').addEventListener('click', closePopup);
+            
+            // Fermer en cliquant à l'extérieur
+            popup.addEventListener('click', (e) => {
+                if (e.target === popup) {
+                    closePopup();
+                }
+            });
         }
-
-
 
         function renderTasksNormalMode(sortedTasks) {
             sortedTasks.forEach(([taskId, task]) => {
@@ -7719,7 +8109,7 @@ ${backgroundGradient}
             // Liste de tous les modals qui pourraient être ouverts
             const modals = [
                 'taskModal',
-                'commentsModal', 
+                'commentsModal',
                 'projectModal',
                 'settingsModal',
                 'helpModal',
