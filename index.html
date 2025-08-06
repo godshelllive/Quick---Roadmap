@@ -1741,7 +1741,7 @@
         }
 
         .task-card:hover {
-            transform: translateY(-6px) scale(1.02);
+            transform: translateY(-1px) scale(1);
             box-shadow: 0 12px 40px rgba(0,0,0,0.15);
             border-color: var(--accent-color);
         }
@@ -4025,8 +4025,9 @@
                     <!-- Version allégée pour les modes allégés -->
                     <div class="stats-compact" id="statsCompact" style="display: none;">
                         <div class="stat-compact">
-                            <i class="fas fa-chart-pie"></i>
+                            <i class="fas fa-check-circle"></i>
                             <span id="statsCompletedTotal">0/0</span>
+                            <span style="font-size: 0.8em; margin-left: 4px; color: var(--text-secondary);">finis</span>
                         </div>
                     </div>
                 </div>
@@ -4071,7 +4072,7 @@
                 </button>
                 
                 <div class="menu-section">
-                    <h4><i class="fas fa-folder"></i> Projet</h4>
+                    <h4><i class="fas fa-folder" style="font-size: 17px;"></i> Projet</h4>
                     <button id="projectSelectorMobile" class="menu-item project-selector-mobile">
                         <i class="fas fa-folder"></i> 
                         <span id="currentProjectNameMobile">Projet par défaut</span>
@@ -4079,7 +4080,7 @@
                 </div>
                 
                 <div class="menu-section">
-                    <h4><i class="fas fa-tools"></i> Actions</h4>
+                    <h4><i class="fas fa-tools" style="font-size: 17px;"></i> Actions</h4>
                     <button id="addTaskBtnMobile" class="menu-item">
                         <i class="fas fa-plus"></i>
                         <span>Nouvel Objectif</span>
@@ -4095,7 +4096,7 @@
                 </div>
                 
                 <div class="menu-section">
-                    <h4><i class="fas fa-palette"></i> Thème</h4>
+                    <h4><i class="fas fa-palette" style="font-size: 17px;"></i> Thème</h4>
                     <div class="theme-buttons">
                         <button class="theme-btn-mobile" data-theme="light"><i class="fas fa-sun"></i> Clair</button>
                         <button class="theme-btn-mobile" data-theme="dark"><i class="fas fa-moon"></i> Sombre</button>
@@ -4844,7 +4845,12 @@
         }
 
         // Écouter les changements de taille d'écran
-        window.addEventListener('resize', adjustConnectionStatusForMobile);
+        window.addEventListener('resize', () => {
+            adjustConnectionStatusForMobile();
+            // Réajuster les stats selon la taille d'écran
+            const compactView = localStorage.getItem('compactView') === 'true';
+            updateStatsDisplay(compactView);
+        });
 
         function updateConnectionStatus(status, message) {
             connectionStatus = status;
@@ -6899,7 +6905,11 @@ ${backgroundGradient}
             const statsContainer = document.querySelector('.stats-container');
             const statsCompact = document.getElementById('statsCompact');
             
-            if (isCompactMode) {
+            // Détecter si on est en mode mobile
+            const isMobile = window.innerWidth <= 768;
+            
+            // Forcer le mode compact si on est en mobile ou en mode compact
+            if (isCompactMode || isMobile) {
                 if (statsContainer) statsContainer.style.display = 'none';
                 if (statsCompact) statsCompact.style.display = 'flex';
             } else {
