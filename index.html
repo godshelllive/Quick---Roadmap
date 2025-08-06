@@ -691,7 +691,82 @@
             gap: 10px;
         }
 
+        /* Styles pour les statistiques du header */
+        .header-stats {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
+        .stats-container {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+
+        .stat-item:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: scale(1.05);
+        }
+
+        .stat-item i {
+            font-size: 16px;
+        }
+
+        .stat-item.completed i {
+            color: #4ade80;
+        }
+
+        .stat-item.in-progress i {
+            color: #fbbf24;
+        }
+
+        .stat-item.suspended i {
+            color: #f87171;
+        }
+
+        .stat-number {
+            font-weight: 700;
+            font-size: 16px;
+            color: white;
+            min-width: 20px;
+            text-align: center;
+        }
+
+        .stats-compact {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .stat-compact {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            color: white;
+            font-weight: 600;
+        }
+
+        .stat-compact i {
+            color: #60a5fa;
+        }
 
         /* Actions modernes */
         .modern-actions {
@@ -1030,6 +1105,25 @@
             
             h1 {
                 font-size: 1.4rem !important;
+            }
+            
+            /* Statistiques responsive */
+            .header-stats {
+                flex: none; /* Ne pas étendre sur mobile */
+                margin: 0 10px;
+            }
+            
+            .stats-container {
+                display: none; /* Masquer les stats complètes sur mobile */
+            }
+            
+            .stats-compact {
+                display: flex !important; /* Forcer l'affichage compact sur mobile */
+            }
+            
+            .stat-compact {
+                padding: 6px 12px;
+                font-size: 14px;
             }
             
             /* Amélioration des modals en mode mobile */
@@ -1796,6 +1890,168 @@
             border: 1px solid var(--danger-color);
         }
 
+        .status-not-started {
+            background: rgba(108, 117, 125, 0.2);
+            color: var(--text-secondary);
+            border: 1px solid var(--text-secondary);
+            font-size: 10px;
+        }
+
+        /* Styles pour le mode super allégé */
+        .super-light-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .super-light-item {
+            background: var(--primary-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 16px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .super-light-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+            border-color: var(--accent-color);
+        }
+
+        .super-light-checkbox-container {
+            margin-top: 2px;
+        }
+
+        .super-light-checkbox {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--accent-color);
+            cursor: pointer;
+        }
+
+        .super-light-content {
+            flex: 1;
+            cursor: pointer;
+        }
+
+        .super-light-title-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .super-light-title {
+            margin: 0;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.3;
+            transition: color 0.2s ease;
+            flex: 1;
+        }
+
+        .super-light-title:hover {
+            color: var(--accent-color);
+        }
+
+        .super-light-title.completed {
+            text-decoration: line-through;
+            opacity: 0.7;
+        }
+
+        .super-light-badge {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+        }
+
+        .super-light-badge:hover {
+            transform: scale(1.1);
+        }
+
+        .badge-completed {
+            background: var(--success-color);
+            color: white;
+        }
+
+        .badge-in-progress {
+            background: var(--warning-color);
+            color: white;
+        }
+
+        .badge-suspended {
+            background: var(--danger-color);
+            color: white;
+        }
+
+        .badge-not-started {
+            background: var(--text-secondary);
+            color: white;
+        }
+
+        .super-light-status {
+            font-size: 0.8rem;
+            font-weight: 500;
+            padding: 4px 8px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+
+        .super-light-status.status-completed {
+            background: rgba(40, 167, 69, 0.15);
+            color: var(--success-color);
+        }
+
+        .super-light-status.status-in-progress {
+            background: rgba(255, 196, 67, 0.15);
+            color: var(--warning-color);
+        }
+
+        .super-light-status.status-suspended {
+            background: rgba(220, 53, 69, 0.15);
+            color: var(--danger-color);
+        }
+
+        .super-light-status.status-not-started {
+            background: rgba(108, 117, 125, 0.15);
+            color: var(--text-secondary);
+        }
+
+        /* Responsive pour le mode super allégé */
+        @media (max-width: 768px) {
+            .super-light-container {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+            
+            .super-light-item {
+                padding: 12px;
+            }
+            
+            .super-light-title {
+                font-size: 0.9rem;
+            }
+            
+            .super-light-badge {
+                width: 20px;
+                height: 20px;
+                font-size: 10px;
+            }
+        }
+
         .task-dates {
             display: flex;
             gap: 12px;
@@ -1934,7 +2190,7 @@
             display: block;
             margin-bottom: 5px;
             font-weight: 500;
-            font-size: 9px;
+            font-size: 12px;
             color: var(--text-primary);
         }
 
@@ -3370,7 +3626,7 @@
         }
 
         .compact-view .task-description {
-            font-size: 0.8rem;
+            font-size: 0.5rem;
             margin-bottom: 8px;
             color: var(--text-secondary);
             line-height: 1.4;
@@ -3750,6 +4006,31 @@
                     <h1><i class="fas fa-rocket"></i> Quick - Roadmap</h1>
                 </div>
                 
+                <!-- Section centrale: Statistiques du projet -->
+                <div class="header-stats" id="headerStats">
+                    <div class="stats-container">
+                        <div class="stat-item completed" title="Objectifs terminés">
+                            <i class="fas fa-check-circle"></i>
+                            <span class="stat-number" id="statsCompleted">0</span>
+                        </div>
+                        <div class="stat-item in-progress" title="Objectifs en cours">
+                            <i class="fas fa-spinner"></i>
+                            <span class="stat-number" id="statsInProgress">0</span>
+                        </div>
+                        <div class="stat-item suspended" title="Objectifs suspendus">
+                            <i class="fas fa-pause-circle"></i>
+                            <span class="stat-number" id="statsSuspended">0</span>
+                        </div>
+                    </div>
+                    <!-- Version allégée pour les modes allégés -->
+                    <div class="stats-compact" id="statsCompact" style="display: none;">
+                        <div class="stat-compact">
+                            <i class="fas fa-chart-pie"></i>
+                            <span id="statsCompletedTotal">0/0</span>
+                        </div>
+                    </div>
+                </div>
+                
                 <!-- Section droite: Actions modernes -->
                 <div class="header-right">
                     <!-- Actions desktop -->
@@ -3907,12 +4188,12 @@
             </div>
             <form id="taskForm">
                 <div class="form-group">
-                    <label for="taskTitle">Titre *</label>
-                    <input type="text" id="taskTitle" required>
+                <label for="taskTitle">Titre *</label>
+                <input type="text" id="taskTitle" required>
                 </div>
                 <div class="form-group">
-                    <label for="taskDescription">Description</label>
-                    <textarea id="taskDescription" rows="3"></textarea>
+                <label for="taskDescription">Description</label>
+                <textarea id="taskDescription" rows="3"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="taskStatus">État</label>
@@ -4117,6 +4398,30 @@
                         </label>
                         <p style="color: var(--text-secondary); font-size: 0.85rem; margin-top: 8px;">
                             Affiche uniquement les informations essentielles des objectifs
+                        </p>
+                    </div>
+                    <div class="settings-field">
+                        <label class="settings-toggle">
+                            <div class="settings-checkbox">
+                                <input type="checkbox" id="reverseOrderToggle">
+                                <span class="checkbox-custom"></span>
+                            </div>
+                            <span class="settings-toggle-label">Ordre inversé</span>
+                        </label>
+                        <p style="color: var(--text-secondary); font-size: 0.85rem; margin-top: 8px;">
+                            Affiche les objectifs par ordre décroissant de date de début (plus récent au plus ancien)
+                        </p>
+                    </div>
+                    <div class="settings-field">
+                        <label class="settings-toggle">
+                            <div class="settings-checkbox">
+                                <input type="checkbox" id="superLightModeToggle">
+                                <span class="checkbox-custom"></span>
+                            </div>
+                            <span class="settings-toggle-label">Mode super allégé</span>
+                        </label>
+                        <p style="color: var(--text-secondary); font-size: 0.85rem; margin-top: 8px;">
+                            Affichage simplifié en colonnes avec cases à cocher et titres seulement
                         </p>
                     </div>
                 </div>
@@ -4990,7 +5295,7 @@
         // Variables globales
         let tasks = {};
         let projects = {};
-        let currentProjectId = 'default';
+        let currentProjectId = localStorage.getItem('lastProjectId') || 'default';
         let currentFilter = 'all';
         let editingTaskId = null;
         let currentTaskComments = null;
@@ -5099,6 +5404,20 @@
                 compactToggle.checked = compactViewEnabled;
             }
             toggleCompactView(compactViewEnabled);
+            
+            // Ordre inversé (par date de début)
+            const reverseOrderEnabled = localStorage.getItem(`reverseOrder_${currentProjectId}`) === 'true';
+            const reverseOrderToggle = document.getElementById('reverseOrderToggle');
+            if (reverseOrderToggle) {
+                reverseOrderToggle.checked = reverseOrderEnabled;
+            }
+            
+            // Mode super allégé
+            const superLightModeEnabled = localStorage.getItem(`superLightMode_${currentProjectId}`) === 'true';
+            const superLightModeToggle = document.getElementById('superLightModeToggle');
+            if (superLightModeToggle) {
+                superLightModeToggle.checked = superLightModeEnabled;
+            }
         }
 
         function setupEventListeners() {
@@ -5166,6 +5485,12 @@
             
             const compactToggle = document.getElementById('compactViewToggle');
             if (compactToggle) compactToggle.addEventListener('change', handleCompactViewToggle);
+            
+            const reverseOrderToggle = document.getElementById('reverseOrderToggle');
+            if (reverseOrderToggle) reverseOrderToggle.addEventListener('change', handleReverseOrderToggle);
+            
+            const superLightModeToggle = document.getElementById('superLightModeToggle');
+            if (superLightModeToggle) superLightModeToggle.addEventListener('change', handleSuperLightModeToggle);
             
             // Project modal
             if (projectSelector) projectSelector.addEventListener('click', openProjectModal);
@@ -5904,8 +6229,8 @@ ${backgroundGradient}
                 // Charger les mots de passe des projets
                 loadProjectPasswords();
                 
-                // Charger les tâches du projet courant
-                loadTasksFromFirebase();
+                // Vérifier l'accès au dernier projet
+                checkLastProjectAccessFirebase();
             }).catch((error) => {
                 clearTimeout(timeoutId);
                 console.error('Erreur lors du chargement des projets:', error);
@@ -5935,8 +6260,88 @@ ${backgroundGradient}
             }
             
             // Charger les tâches du projet courant
-            loadTasksFromLocalStorage();
+            checkLastProjectAccess();
             hideLoading();
+        }
+
+        function checkLastProjectAccess() {
+            // Vérifier si le projet courant existe et s'il nécessite un mot de passe
+            if (currentProjectId !== 'default' && projects[currentProjectId]) {
+                const project = projects[currentProjectId];
+                if (project.hasPassword) {
+                    // Vérifier si le mot de passe est mémorisé
+                    const rememberedPasswords = JSON.parse(localStorage.getItem('rememberedPasswords') || '{}');
+                    if (rememberedPasswords[currentProjectId]) {
+                        // Mot de passe mémorisé, charger directement
+                        loadTasksFromLocalStorage();
+                    } else {
+                        // Demander le mot de passe
+                        const projectName = project.name;
+                        showPasswordModal(currentProjectId, projectName, (password) => {
+                            // Une fois le mot de passe entré, charger les tâches
+                            loadTasksFromLocalStorage();
+                        }, () => {
+                            // Si annulé, revenir au projet par défaut
+                            currentProjectId = 'default';
+                            localStorage.setItem('lastProjectId', 'default');
+                            updateProjectNames();
+                            loadTasksFromLocalStorage();
+                        });
+                        return;
+                    }
+                } else {
+                    // Pas de mot de passe, charger directement
+                    loadTasksFromLocalStorage();
+                }
+            } else {
+                // Projet par défaut ou projet inexistant, charger directement
+                if (currentProjectId !== 'default' && !projects[currentProjectId]) {
+                    // Le projet n'existe plus, revenir au défaut
+                    currentProjectId = 'default';
+                    localStorage.setItem('lastProjectId', 'default');
+                }
+                loadTasksFromLocalStorage();
+            }
+        }
+
+        function checkLastProjectAccessFirebase() {
+            // Vérifier si le projet courant existe et s'il nécessite un mot de passe
+            if (currentProjectId !== 'default' && projects[currentProjectId]) {
+                const project = projects[currentProjectId];
+                if (project.hasPassword) {
+                    // Vérifier si le mot de passe est mémorisé
+                    const rememberedPasswords = JSON.parse(localStorage.getItem('rememberedPasswords') || '{}');
+                    if (rememberedPasswords[currentProjectId]) {
+                        // Mot de passe mémorisé, charger directement
+                        loadTasksFromFirebase();
+                    } else {
+                        // Demander le mot de passe
+                        const projectName = project.name;
+                        showPasswordModal(currentProjectId, projectName, (password) => {
+                            // Une fois le mot de passe entré, charger les tâches
+                            loadTasksFromFirebase();
+                        }, () => {
+                            // Si annulé, revenir au projet par défaut
+                            currentProjectId = 'default';
+                            localStorage.setItem('lastProjectId', 'default');
+                            updateProjectNames();
+                            loadTasksFromFirebase();
+                        });
+                        return;
+                    }
+                } else {
+                    // Pas de mot de passe, charger directement
+                    loadTasksFromFirebase();
+                }
+            } else {
+                // Projet par défaut ou projet inexistant, charger directement
+                if (currentProjectId !== 'default' && !projects[currentProjectId]) {
+                    // Le projet n'existe plus, revenir au défaut
+                    currentProjectId = 'default';
+                    localStorage.setItem('lastProjectId', 'default');
+                }
+                loadTasksFromFirebase();
+            }
         }
 
         function loadProjectPasswords() {
@@ -6057,11 +6462,14 @@ ${backgroundGradient}
             }
             
             currentProjectId = projectId;
+            // Sauvegarder le dernier projet utilisé
+            localStorage.setItem('lastProjectId', projectId);
             const displayName = project.hasPassword ? `🔒 ${project.name}` : project.name;
             updateProjectNames();
             closeProjectModalHandler();
             showLoading('Chargement des objectifs...');
             initUserPresence(); // Mettre à jour la présence pour le nouveau projet
+            initializeDisplayPreferences(); // Recharger les paramètres spécifiques au projet
             loadTasksFromFirebase();
         }
 
@@ -6377,6 +6785,8 @@ ${backgroundGradient}
             document.getElementById('taskTitle').focus();
         }
 
+
+
         function closeModalHandler() {
             taskModal.style.display = 'none';
             editingTaskId = null;
@@ -6435,17 +6845,163 @@ ${backgroundGradient}
                         <p>Commencez par ajouter un objectif pour votre projet de site web.</p>
                     </div>
                 `;
+                updateProjectStats(); // Mettre à jour les stats même si pas de tâches
                 return;
             }
             
-            // Trier les tâches par date de création
-            const sortedTasks = Object.entries(filteredTasks)
-                .sort(([,a], [,b]) => b.createdAt - a.createdAt);
+            // Récupérer les paramètres d'affichage
+            const reverseOrder = localStorage.getItem(`reverseOrder_${currentProjectId}`) === 'true';
+            const superLightMode = localStorage.getItem(`superLightMode_${currentProjectId}`) === 'true';
+            const compactView = localStorage.getItem('compactView') === 'true';
             
+            // Trier les tâches par date de début
+            const sortedTasks = Object.entries(filteredTasks)
+                .sort(([,a], [,b]) => {
+                    const aDate = new Date(a.startDate || '9999-12-31');
+                    const bDate = new Date(b.startDate || '9999-12-31');
+                    return reverseOrder ? bDate - aDate : aDate - bDate;
+                });
+            
+            // Appliquer le mode d'affichage
+            if (superLightMode) {
+                renderTasksLightMode(sortedTasks);
+            } else {
+                renderTasksNormalMode(sortedTasks);
+            }
+            
+            // Mettre à jour les statistiques
+            updateProjectStats();
+            
+            // Adapter l'affichage des stats selon le mode
+            updateStatsDisplay(compactView || superLightMode);
+        }
+
+        function updateProjectStats() {
+            const allTasks = Object.values(tasks);
+            const completed = allTasks.filter(task => task.status === 'completed').length;
+            const inProgress = allTasks.filter(task => task.status === 'in-progress').length;
+            const suspended = allTasks.filter(task => task.status === 'suspended').length;
+            const total = allTasks.length;
+            
+            // Mettre à jour les éléments du DOM
+            const statsCompleted = document.getElementById('statsCompleted');
+            const statsInProgress = document.getElementById('statsInProgress');
+            const statsSuspended = document.getElementById('statsSuspended');
+            const statsCompletedTotal = document.getElementById('statsCompletedTotal');
+            
+            if (statsCompleted) statsCompleted.textContent = completed;
+            if (statsInProgress) statsInProgress.textContent = inProgress;
+            if (statsSuspended) statsSuspended.textContent = suspended;
+            if (statsCompletedTotal) statsCompletedTotal.textContent = `${completed}/${total}`;
+        }
+
+        function updateStatsDisplay(isCompactMode) {
+            const statsContainer = document.querySelector('.stats-container');
+            const statsCompact = document.getElementById('statsCompact');
+            
+            if (isCompactMode) {
+                if (statsContainer) statsContainer.style.display = 'none';
+                if (statsCompact) statsCompact.style.display = 'flex';
+            } else {
+                if (statsContainer) statsContainer.style.display = 'flex';
+                if (statsCompact) statsCompact.style.display = 'none';
+            }
+        }
+
+        function renderTasksNormalMode(sortedTasks) {
             sortedTasks.forEach(([taskId, task]) => {
                 const taskElement = createTaskElement(taskId, task);
                 tasksContainer.appendChild(taskElement);
             });
+        }
+
+        function renderTasksLightMode(sortedTasks) {
+            // Mode super allégé : affichage stylé avec cases à cocher et titres
+            const lightContainer = document.createElement('div');
+            lightContainer.className = 'super-light-container';
+            
+            sortedTasks.forEach(([taskId, task], index) => {
+                const lightItem = document.createElement('div');
+                lightItem.className = 'super-light-item';
+                
+                // Déterminer le statut d'affichage basé sur les dates
+                let displayStatus = task.status;
+                const today = new Date();
+                if (task.startDate) {
+                    const startDate = new Date(task.startDate);
+                    const diffDaysStart = Math.ceil((startDate - today) / (1000 * 60 * 60 * 24));
+                    if (diffDaysStart > 0 && task.status !== 'completed') {
+                        displayStatus = 'not-started';
+                    }
+                }
+                
+                lightItem.innerHTML = `
+                    <div class="super-light-checkbox-container">
+                        <input type="checkbox" 
+                               class="super-light-checkbox"
+                               ${task.status === 'completed' ? 'checked' : ''} 
+                               onchange="toggleTaskCompletion('${taskId}')">
+                    </div>
+                    <div class="super-light-content" onclick="openModal('${taskId}')">
+                        <div class="super-light-title-row">
+                            <h4 class="super-light-title ${task.status === 'completed' ? 'completed' : ''}">${task.title}</h4>
+                            <div class="super-light-badge ${getBadgeClass(task, displayStatus)}" title="${getStatusLabel(task, displayStatus)}">
+                                ${getBadgeIcon(task, displayStatus)}
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                lightContainer.appendChild(lightItem);
+            });
+            
+            tasksContainer.appendChild(lightContainer);
+        }
+
+        function getStatusLabel(task, displayStatus) {
+            const today = new Date();
+            
+            if (displayStatus === 'not-started' && task.startDate) {
+                const startDate = new Date(task.startDate);
+                const diffDays = Math.ceil((startDate - today) / (1000 * 60 * 60 * 24));
+                return `${diffDays} jour${diffDays > 1 ? 's' : ''} avant démarrage`;
+            }
+            
+            const statusLabels = {
+                'in-progress': 'En cours',
+                'completed': 'Terminé',
+                'suspended': 'Suspendu'
+            };
+            
+            return statusLabels[task.status] || 'En cours';
+        }
+
+        function getBadgeIcon(task, displayStatus) {
+            if (displayStatus === 'not-started') {
+                return '<i class="fas fa-clock"></i>';
+            }
+            
+            const statusIcons = {
+                'completed': '<i class="fas fa-check"></i>',
+                'in-progress': '<i class="fas fa-spinner fa-spin"></i>',
+                'suspended': '<i class="fas fa-pause"></i>'
+            };
+            
+            return statusIcons[task.status] || '<i class="fas fa-spinner fa-spin"></i>';
+        }
+
+        function getBadgeClass(task, displayStatus) {
+            if (displayStatus === 'not-started') {
+                return 'badge-not-started';
+            }
+            
+            const badgeClasses = {
+                'completed': 'badge-completed',
+                'in-progress': 'badge-in-progress',
+                'suspended': 'badge-suspended'
+            };
+            
+            return badgeClasses[task.status] || 'badge-in-progress';
         }
 
         function filterTasks() {
@@ -6499,24 +7055,47 @@ ${backgroundGradient}
             if (task.startDate) dates.push(`<span class="task-date-item"><i class="fas fa-play"></i> ${formatDate(task.startDate)}</span>`);
             if (task.endDate) dates.push(`<span class="task-date-item"><i class="fas fa-flag-checkered"></i> ${formatDate(task.endDate)}</span>`);
             
-            // Calculer les jours restants
+            // Calculer les jours avant démarrage et avant la fin
             let timeInfo = '';
+            let actualStatus = task.status;
+            let actualStatusLabel = statusLabels[task.status];
+            let actualStatusIcon = statusIcons[task.status];
+            
+            const today = new Date();
+            
+            // Vérifier si la date de début est dans le futur
+            if (task.startDate) {
+                const startDate = new Date(task.startDate);
+                const diffTimeStart = startDate - today;
+                const diffDaysStart = Math.ceil(diffTimeStart / (1000 * 60 * 60 * 24));
+                
+                if (diffDaysStart > 0 && task.status !== 'completed') {
+                    // Date de début dans le futur - afficher "X jours avant démarrage"
+                    actualStatus = 'not-started';
+                    actualStatusLabel = `${diffDaysStart} jour${diffDaysStart > 1 ? 's' : ''} avant démarrage`;
+                    actualStatusIcon = 'fas fa-clock';
+                }
+            }
+            
+            // Calculer les jours avant la fin
             if (task.endDate) {
-                const today = new Date();
                 const endDate = new Date(task.endDate);
                 const diffTime = endDate - today;
                 const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
                 
                 if (task.status === 'completed') {
                     // Tâche terminée - afficher un message de réussite
-                    timeInfo = `<span class="task-stat" style="color: var(--success-color);"><i class="fas fa-check-circle"></i> Objectif terminé</span>`;
+                    timeInfo = `<span class="task-stat" style="color: var(--success-color);"><i class="fas fa-check-circle"></i> Objectif atteint</span>`;
                 } else if (task.status === 'suspended') {
                     // Tâche suspendue - afficher un message spécifique
                     timeInfo = `<span class="task-stat" style="color: var(--warning-color);"><i class="fas fa-pause-circle"></i> Objectif suspendu</span>`;
+                } else if (actualStatus === 'not-started') {
+                    // Tâche pas encore démarrée - ne pas afficher de délai avant la fin
+                    timeInfo = '';
                 } else {
-                    // Tâche en cours - calculer normalement les délais
+                    // Tâche en cours - calculer les délais avant la fin
                     if (diffDays > 0) {
-                        timeInfo = `<span class="task-stat"><i class="fas fa-calendar-alt"></i> ${diffDays} jour${diffDays > 1 ? 's' : ''} restant${diffDays > 1 ? 's' : ''}</span>`;
+                        timeInfo = `<span class="task-stat"><i class="fas fa-calendar-alt"></i> ${diffDays} jour${diffDays > 1 ? 's' : ''} avant la fin</span>`;
                     } else if (diffDays === 0) {
                         timeInfo = `<span class="task-stat" style="color: var(--warning-color);"><i class="fas fa-exclamation-circle"></i> Échéance aujourd'hui</span>`;
                     } else {
@@ -6532,8 +7111,8 @@ ${backgroundGradient}
                     <div class="task-content">
                         <div class="task-title-row">
                             <h3 class="task-title">${task.title}</h3>
-                            <span class="task-status status-${task.status}">
-                                <i class="${statusIcons[task.status]}"></i> ${statusLabels[task.status]}
+                            <span class="task-status status-${actualStatus}">
+                                <i class="${actualStatusIcon}"></i> ${actualStatusLabel}
                             </span>
                         </div>
                         ${task.description ? `<p class="task-description">${getTaskDescription(task.description, taskId)}</p>` : ''}
@@ -7272,6 +7851,20 @@ ${backgroundGradient}
         function toggleCompactView(enabled) {
             document.body.classList.toggle('compact-view', enabled);
             // Re-render les tâches pour appliquer le nouveau style
+            renderTasks();
+        }
+
+        function handleReverseOrderToggle(e) {
+            const enabled = e.target.checked;
+            localStorage.setItem(`reverseOrder_${currentProjectId}`, enabled);
+            // Re-render les tâches pour appliquer le nouvel ordre
+            renderTasks();
+        }
+
+        function handleSuperLightModeToggle(e) {
+            const enabled = e.target.checked;
+            localStorage.setItem(`superLightMode_${currentProjectId}`, enabled);
+            // Re-render les tâches pour appliquer le nouveau mode d'affichage
             renderTasks();
         }
 
