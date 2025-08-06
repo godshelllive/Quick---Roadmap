@@ -625,6 +625,7 @@
             border: 1px solid rgba(255,255,255,0.2);
             border-radius: 12px;
             padding: 10px 16px;
+            outline: none;
             font-size: 0.8rem;
             font-weight: 500;
             display: flex;
@@ -691,82 +692,7 @@
             gap: 10px;
         }
 
-        /* Styles pour les statistiques du header */
-        .header-stats {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
 
-        .stats-container {
-            display: flex;
-            gap: 20px;
-            align-items: center;
-        }
-
-        .stat-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 12px;
-            background: rgba(255, 255, 255, 0.15);
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-            cursor: default;
-        }
-
-        .stat-item:hover {
-            background: rgba(255, 255, 255, 0.25);
-            transform: scale(1.05);
-        }
-
-        .stat-item i {
-            font-size: 16px;
-        }
-
-        .stat-item.completed i {
-            color: #4ade80;
-        }
-
-        .stat-item.in-progress i {
-            color: #fbbf24;
-        }
-
-        .stat-item.suspended i {
-            color: #f87171;
-        }
-
-        .stat-number {
-            font-weight: 700;
-            font-size: 16px;
-            color: white;
-            min-width: 20px;
-            text-align: center;
-        }
-
-        .stats-compact {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .stat-compact {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 16px;
-            background: rgba(255, 255, 255, 0.15);
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            color: white;
-            font-weight: 600;
-        }
-
-        .stat-compact i {
-            color: #60a5fa;
-        }
 
         /* Actions modernes */
         .modern-actions {
@@ -1107,24 +1033,6 @@
                 font-size: 1.4rem !important;
             }
             
-            /* Statistiques responsive */
-            .header-stats {
-                flex: none; /* Ne pas étendre sur mobile */
-                margin: 0 10px;
-            }
-            
-            .stats-container {
-                display: none; /* Masquer les stats complètes sur mobile */
-            }
-            
-            .stats-compact {
-                display: flex !important; /* Forcer l'affichage compact sur mobile */
-            }
-            
-            .stat-compact {
-                padding: 6px 12px;
-                font-size: 14px;
-            }
             
             /* Amélioration des modals en mode mobile */
             .modal-content {
@@ -1688,6 +1596,10 @@
             cursor: pointer;
             transition: all 0.2s ease;
             color: var(--text-secondary);
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
 
         .tab-btn.active,
@@ -1695,6 +1607,26 @@
             background: var(--accent-color);
             color: white;
             border-color: var(--accent-color);
+        }
+
+        .filter-badge {
+            background: #55b4fc;
+            color: white;
+            border-radius: 12px;
+            border: 1px solid rgb(94, 94, 94);
+            padding: 2px 6px;
+            padding-top: 4px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            min-width: 18px;
+            text-align: center;
+            margin-left: auto;
+            transform: scale(.9);
+        }
+
+        .tab-btn.active .filter-badge {
+            background: rgba(255, 255, 255, 0.3);
+            color: white;
         }
 
         .tasks-container {
@@ -2618,6 +2550,10 @@
                 margin: 20px;
                 width: calc(100% - 40px);
                 max-width: none;
+            }
+
+            .filter-badge {
+                transform: scale(.8);
             }
 
             .user-modal h2 {
@@ -4007,31 +3943,6 @@
                     <h1><i class="fas fa-rocket"></i> Quick - Roadmap</h1>
                 </div>
                 
-                <!-- Section centrale: Statistiques du projet -->
-                <div class="header-stats" id="headerStats">
-                    <div class="stats-container">
-                        <div class="stat-item completed" title="Objectifs terminés">
-                            <i class="fas fa-check-circle"></i>
-                            <span class="stat-number" id="statsCompleted">0</span>
-                        </div>
-                        <div class="stat-item in-progress" title="Objectifs en cours">
-                            <i class="fas fa-spinner"></i>
-                            <span class="stat-number" id="statsInProgress">0</span>
-                        </div>
-                        <div class="stat-item suspended" title="Objectifs suspendus">
-                            <i class="fas fa-pause-circle"></i>
-                            <span class="stat-number" id="statsSuspended">0</span>
-                        </div>
-                    </div>
-                    <!-- Version allégée pour les modes allégés -->
-                    <div class="stats-compact" id="statsCompact" style="display: none;">
-                        <div class="stat-compact">
-                            <i class="fas fa-check-circle"></i>
-                            <span id="statsCompletedTotal">0/0</span>
-                            <span style="font-size: 0.8em; margin-left: 4px; color: white;">finis</span>
-                        </div>
-                    </div>
-                </div>
                 
                 <!-- Section droite: Actions modernes -->
                 <div class="header-right">
@@ -4149,16 +4060,20 @@
         <div class="filter-tabs">
             <button class="tab-btn active" data-filter="all">
                 <i class="fas fa-list"></i> <span>Tous</span>
+                <span class="filter-badge" id="badgeAll">0</span>
             </button>
 
             <button class="tab-btn" data-filter="in-progress">
                 <i class="fas fa-spinner"></i> <span>En cours</span>
+                <span class="filter-badge" id="badgeInProgress">0</span>
             </button>
             <button class="tab-btn" data-filter="completed">
                 <i class="fas fa-check-circle"></i> <span>Terminé</span>
+                <span class="filter-badge" id="badgeCompleted">0</span>
             </button>
             <button class="tab-btn" data-filter="suspended">
                 <i class="fas fa-pause-circle"></i> <span>Suspendu</span>
+                <span class="filter-badge" id="badgeSuspended">0</span>
             </button>
         </div>
 
@@ -4307,7 +4222,7 @@
                     <button id="passwordOk" class="modal-btn confirm-btn">Accéder</button>
                 </div>
             </div>
-        </div>
+            </div>
 
     <!-- Settings Modal -->
     <div id="settingsModal" class="custom-modal" style="display: none;">
@@ -4803,8 +4718,8 @@
                     right: 0px;
                     padding: 6px 10px;
                     padding-right: 19px;
+                    padding-left: 23px;
                     border-radius: 0px;
-                    border-bottom-left-radius: 15px;
                     font-size: 0.75rem;
                     font-weight: 500;
                     z-index: 9999;
@@ -4826,13 +4741,12 @@
                     connectionStatusElement.style.bottom = 'auto';
                     connectionStatusElement.style.top = '0px';
                     connectionStatusElement.style.left = 'auto';
-                    connectionStatusElement.style.right = '0px';
+                    connectionStatusElement.style.right = '10px';
                     connectionStatusElement.style.fontSize = '1rem';
                     connectionStatusElement.style.padding = '8px';
-                    connectionStatusElement.style.paddingRight = '10px';
                     connectionStatusElement.style.maxWidth = '40px';
                     connectionStatusElement.style.borderRadius = '0px';
-                    connectionStatusElement.style.borderBottomLeftRadius = '15px';
+                    connectionStatusElement.style.borderBottomLeftRadius = '20px';
                     connectionStatusElement.style.width = '40px';
                     connectionStatusElement.style.height = '40px';
                     connectionStatusElement.style.display = 'flex';
@@ -4846,12 +4760,7 @@
         }
 
         // Écouter les changements de taille d'écran
-        window.addEventListener('resize', () => {
-            adjustConnectionStatusForMobile();
-            // Réajuster les stats selon la taille d'écran
-            const compactView = localStorage.getItem('compactView') === 'true';
-            updateStatsDisplay(compactView);
-        });
+        window.addEventListener('resize', adjustConnectionStatusForMobile);
 
         function updateConnectionStatus(status, message) {
             connectionStatus = status;
@@ -4860,24 +4769,78 @@
                 adjustConnectionStatusForMobile();
             }
             
-            const colors = {
-                checking: { bg: '#74b9ff', color: '#ffffff', icon: 'fa-spinner fa-spin' },
-                online: { bg: '#00b894', color: '#ffffff', icon: 'fa-wifi' },
-                slow: { bg: '#fdcb6e', color: '#2d3436', icon: 'fa-signal' },
-                offline: { bg: '#e17055', color: '#ffffff', icon: 'fa-wifi-slash' }
+            const statusConfig = {
+                checking: { 
+                    bg: '#74b9ff', 
+                    color: '#ffffff', 
+                    icon: 'fa-spinner fa-spin',
+                    mobileIcon: 'fa-sync fa-spin',
+                    fullMessage: 'Vérification de la connexion...',
+                    shortMessage: 'Connexion...'
+                },
+                online: { 
+                    bg: '#00b894', 
+                    color: '#ffffff', 
+                    icon: 'fa-wifi',
+                    mobileIcon: 'fa-check-circle',
+                    fullMessage: 'Connexion active - Synchronisation en temps réel',
+                    shortMessage: 'En ligne'
+                },
+                slow: { 
+                    bg: '#fdcb6e', 
+                    color: '#2d3436', 
+                    icon: 'fa-signal',
+                    mobileIcon: 'fa-exclamation-triangle',
+                    fullMessage: 'Connexion lente - Synchronisation retardée',
+                    shortMessage: 'Lent'
+                },
+                offline: { 
+                    bg: '#e17055', 
+                    color: '#ffffff', 
+                    icon: 'fa-wifi-slash',
+                    mobileIcon: 'fa-times-circle',
+                    fullMessage: 'Hors ligne - Modifications sauvegardées localement',
+                    shortMessage: 'Hors ligne'
+                },
+                syncing: {
+                    bg: '#6c5ce7',
+                    color: '#ffffff',
+                    icon: 'fa-sync fa-spin',
+                    mobileIcon: 'fa-cloud-upload-alt',
+                    fullMessage: 'Synchronisation en cours...',
+                    shortMessage: 'Synchro...'
+                }
             };
             
-            const style = colors[status];
+            const config = statusConfig[status];
             
             // Mettre à jour l'indicateur mobile
-            connectionStatusElement.style.background = style.bg;
-            connectionStatusElement.style.color = style.color;
+            connectionStatusElement.style.background = config.bg;
+            connectionStatusElement.style.color = config.color;
             const isMobile = window.innerWidth <= 768;
+            
             if (isMobile) {
-                // En mobile : icône seule
-                connectionStatusElement.innerHTML = `<i class="fas ${style.icon}"></i>`;
+                // En mobile : icône dynamique plus visible avec animation
+                connectionStatusElement.innerHTML = `<i class="fas ${config.mobileIcon}" title="${config.fullMessage}"></i>`;
+                connectionStatusElement.style.padding = '8px';
+                connectionStatusElement.style.borderRadius = '0px';
+                connectionStatusElement.style.right = '10px';
+                connectionStatusElement.style.borderBottomLeftRadius = '20px';
+                connectionStatusElement.style.width = '36px';
+                connectionStatusElement.style.height = '36px';
+                connectionStatusElement.style.display = 'flex';
+                connectionStatusElement.style.alignItems = 'center';
+                connectionStatusElement.style.justifyContent = 'center';
+                connectionStatusElement.style.cursor = 'pointer';
+                
+                // Ajouter l'événement de clic pour afficher la bulle
+                connectionStatusElement.onclick = () => showStatusBubble(config.fullMessage);
             } else {
-                connectionStatusElement.innerHTML = `<i class="fas ${style.icon}"></i> ${message}`;
+                connectionStatusElement.innerHTML = `<i class="fas ${config.icon}"></i> ${config.shortMessage}`;
+                connectionStatusElement.style.padding = '8px';
+                connectionStatusElement.style.borderBottomLeftRadius = '20px';
+                connectionStatusElement.style.width = 'auto';
+                connectionStatusElement.style.height = 'auto';
             }
             
             // L'indicateur desktop a été supprimé car redondant avec l'indicateur existant
@@ -6119,8 +6082,7 @@ ${backgroundGradient}
                 // Ajouter l'événement de clic
                 themeCard.addEventListener('click', function() {
                     const theme = this.getAttribute('data-theme');
-                    localStorage.setItem('theme', theme);
-                    applyTheme(theme);
+                    showThemeConfirmModal(theme);
                 });
             }
             
@@ -6675,7 +6637,7 @@ ${backgroundGradient}
             
             if (isFirebaseAvailable && database) {
                 // Afficher un indicateur de synchronisation
-                updateConnectionStatus(connectionStatus, 'Synchronisation...');
+                updateConnectionStatus('syncing', 'Synchronisation...');
                 
                 const tasksRef = database.ref('tasks-' + currentProjectId);
                 
@@ -6887,9 +6849,6 @@ ${backgroundGradient}
             
             // Mettre à jour les statistiques
             updateProjectStats();
-            
-            // Adapter l'affichage des stats selon le mode
-            updateStatsDisplay(compactView || superLightMode);
         }
 
         function updateProjectStats() {
@@ -6899,34 +6858,79 @@ ${backgroundGradient}
             const suspended = allTasks.filter(task => task.status === 'suspended').length;
             const total = allTasks.length;
             
-            // Mettre à jour les éléments du DOM
-            const statsCompleted = document.getElementById('statsCompleted');
-            const statsInProgress = document.getElementById('statsInProgress');
-            const statsSuspended = document.getElementById('statsSuspended');
-            const statsCompletedTotal = document.getElementById('statsCompletedTotal');
+            // Mettre à jour les badges de filtre
+            const badgeAll = document.getElementById('badgeAll');
+            const badgeInProgress = document.getElementById('badgeInProgress');
+            const badgeCompleted = document.getElementById('badgeCompleted');
+            const badgeSuspended = document.getElementById('badgeSuspended');
             
-            if (statsCompleted) statsCompleted.textContent = completed;
-            if (statsInProgress) statsInProgress.textContent = inProgress;
-            if (statsSuspended) statsSuspended.textContent = suspended;
-            if (statsCompletedTotal) statsCompletedTotal.textContent = `${completed}/${total}`;
+            if (badgeAll) badgeAll.textContent = total;
+            if (badgeInProgress) badgeInProgress.textContent = inProgress;
+            if (badgeCompleted) badgeCompleted.textContent = completed;
+            if (badgeSuspended) badgeSuspended.textContent = suspended;
+            
+            // Masquer les badges si le nombre est 0
+            if (badgeAll) badgeAll.style.display = total > 0 ? 'flex' : 'none';
+            if (badgeInProgress) badgeInProgress.style.display = inProgress > 0 ? 'flex' : 'none';
+            if (badgeCompleted) badgeCompleted.style.display = completed > 0 ? 'flex' : 'none';
+            if (badgeSuspended) badgeSuspended.style.display = suspended > 0 ? 'flex' : 'none';
         }
 
-        function updateStatsDisplay(isCompactMode) {
-            const statsContainer = document.querySelector('.stats-container');
-            const statsCompact = document.getElementById('statsCompact');
+        function showStatusBubble(message) {
+            // Supprimer l'ancienne bulle si elle existe
+            const existingBubble = document.getElementById('statusBubble');
+            if (existingBubble) {
+                existingBubble.remove();
+            }
             
-            // Détecter si on est en mode mobile
-            const isMobile = window.innerWidth <= 768;
+            // Créer la bulle
+            const bubble = document.createElement('div');
+            bubble.id = 'statusBubble';
+            bubble.style.cssText = `
+                position: fixed;
+                top: 0px;
+                right: 50px;
+                background: rgba(0, 0, 0, 0.60);
+                color: white;
+                padding: 10px 15px;
+                border-radius: 10px;
+                font-size: 14px;
+                max-width: 250px;
+                z-index: 10000;
+                opacity: 1;
+                transition: opacity 0.5s ease;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            `;
+            bubble.textContent = message;
             
-            // Forcer le mode compact si on est en mobile ou en mode compact
-            if (isCompactMode || isMobile) {
-                if (statsContainer) statsContainer.style.display = 'none';
-                if (statsCompact) statsCompact.style.display = 'flex';
-            } else {
-                if (statsContainer) statsContainer.style.display = 'flex';
-                if (statsCompact) statsCompact.style.display = 'none';
+            // Ajouter au body
+            document.body.appendChild(bubble);
+            
+            // Supprimer après 3 secondes avec fade out
+            setTimeout(() => {
+                bubble.style.opacity = '0';
+                setTimeout(() => {
+                    if (bubble.parentNode) {
+                        bubble.remove();
+                    }
+                }, 500);
+            }, 3000);
+        }
+
+        function showThemeConfirmModal(theme) {
+            const confirmed = confirm(
+                "Le changement de thème va recharger la page.\n\n" +
+                "Tout travail non sauvegardé sera perdu.\n" +
+                "Êtes-vous sûr de vouloir continuer ?"
+            );
+            
+            if (confirmed) {
+                localStorage.setItem('theme', theme);
+                location.reload();
             }
         }
+
+
 
         function renderTasksNormalMode(sortedTasks) {
             sortedTasks.forEach(([taskId, task]) => {
