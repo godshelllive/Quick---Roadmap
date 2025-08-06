@@ -6283,8 +6283,12 @@ ${backgroundGradient}
                     } else {
                         // Demander le mot de passe
                         const projectName = project.name;
-                        showPasswordModal(currentProjectId, projectName, (password) => {
+                        showPasswordPrompt(projectName, (password, remember) => {
                             // Une fois le mot de passe entré, charger les tâches
+                            if (remember && password) {
+                                rememberedPasswords[currentProjectId] = password;
+                                localStorage.setItem('rememberedPasswords', JSON.stringify(rememberedPasswords));
+                            }
                             loadTasksFromLocalStorage();
                         }, () => {
                             // Si annulé, revenir au projet par défaut
@@ -6323,8 +6327,13 @@ ${backgroundGradient}
                     } else {
                         // Demander le mot de passe
                         const projectName = project.name;
-                        showPasswordModal(currentProjectId, projectName, (password) => {
+                        showPasswordPrompt(projectName, (password, remember) => {
                             // Une fois le mot de passe entré, charger les tâches
+                            if (remember && password) {
+                                const storedPasswords = JSON.parse(localStorage.getItem('rememberedPasswords') || '{}');
+                                storedPasswords[currentProjectId] = password;
+                                localStorage.setItem('rememberedPasswords', JSON.stringify(storedPasswords));
+                            }
                             loadTasksFromFirebase();
                         }, () => {
                             // Si annulé, revenir au projet par défaut
