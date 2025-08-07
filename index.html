@@ -6095,7 +6095,7 @@
                     <div class="comment-header">
                         <div class="comment-author">
                             <i class="fas fa-user-circle"></i>
-                            <span>${comment.authorName}</span>
+                            <span style='font-size: 11px;'>${comment.authorName}</span>
                             ${isOwner ? '<span class="comment-owner-badge">(vous)</span>' : ''}
                         </div>
                         <div class="comment-date">
@@ -6606,6 +6606,7 @@ ${backgroundGradient}
                     const rememberedPasswords = JSON.parse(localStorage.getItem('rememberedPasswords') || '{}');
                     if (rememberedPasswords[currentProjectId]) {
                         // Mot de passe mémorisé, charger directement
+                        updateProjectNames();
                         loadTasksFromLocalStorage();
                     } else {
                         // Demander le mot de passe
@@ -6616,6 +6617,7 @@ ${backgroundGradient}
                                 rememberedPasswords[currentProjectId] = password;
                                 localStorage.setItem('rememberedPasswords', JSON.stringify(rememberedPasswords));
                             }
+                            updateProjectNames();
                             loadTasksFromLocalStorage();
                         }, () => {
                             // Si annulé, revenir au projet par défaut
@@ -6628,6 +6630,7 @@ ${backgroundGradient}
                     }
                 } else {
                     // Pas de mot de passe, charger directement
+                    updateProjectNames();
                     loadTasksFromLocalStorage();
                 }
             } else {
@@ -6637,6 +6640,7 @@ ${backgroundGradient}
                     currentProjectId = 'default';
                     localStorage.setItem('lastProjectId', 'default');
                 }
+                updateProjectNames();
                 loadTasksFromLocalStorage();
             }
         }
@@ -6650,6 +6654,7 @@ ${backgroundGradient}
                     const rememberedPasswords = JSON.parse(localStorage.getItem('rememberedPasswords') || '{}');
                     if (rememberedPasswords[currentProjectId]) {
                         // Mot de passe mémorisé, charger directement
+                        updateProjectNames();
                         loadTasksFromFirebase();
                     } else {
                         // Demander le mot de passe
@@ -6661,6 +6666,7 @@ ${backgroundGradient}
                                 storedPasswords[currentProjectId] = password;
                                 localStorage.setItem('rememberedPasswords', JSON.stringify(storedPasswords));
                             }
+                            updateProjectNames();
                             loadTasksFromFirebase();
                         }, () => {
                             // Si annulé, revenir au projet par défaut
@@ -6673,6 +6679,7 @@ ${backgroundGradient}
                     }
                 } else {
                     // Pas de mot de passe, charger directement
+                    updateProjectNames();
                     loadTasksFromFirebase();
                 }
             } else {
@@ -6682,6 +6689,7 @@ ${backgroundGradient}
                     currentProjectId = 'default';
                     localStorage.setItem('lastProjectId', 'default');
                 }
+                updateProjectNames();
                 loadTasksFromFirebase();
             }
         }
